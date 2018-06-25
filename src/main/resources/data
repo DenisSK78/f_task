@@ -1,0 +1,42 @@
+CREATE DATABASE IF NOT EXISTS proposal;
+
+CREATE TABLE IF NOT EXISTS customer (
+  id BIGINT AUTO_INCREMENT,
+  name VARCHAR(60),
+  role VARCHAR(10),
+  PRIMARY KEY (id));
+
+CREATE TABLE IF NOT EXISTS proposal (
+  id BIGINT AUTO_INCREMENT,
+  request VARCHAR(255),
+  dib DOUBLE(10,2),
+  status VARCHAR(10) NOT NULL DEFAULT "NEW",
+  due_date TIMESTAMP NOT NULL,
+  start_date TIMESTAMP NOT NULL,
+  denied_date TIMESTAMP NULL DEFAULT NULL,
+  done_date TIMESTAMP NULL DEFAULT NULL,
+  customer_id BIGINT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (customer_id) REFERENCES customer(id));
+
+INSERT INTO `proposal`.`customer` (`name`, `role`) VALUES ('Vasily', 'CUSTOMER');
+INSERT INTO `proposal`.`customer` (`name`, `role`) VALUES ('Gena', 'CUSTOMER');
+INSERT INTO `proposal`.`customer` (`name`, `role`) VALUES ('Serg', 'CUSTOMER');
+INSERT INTO `proposal`.`customer` (`name`, `role`) VALUES ('Den', 'CUSTOMER');
+INSERT INTO `proposal`.`customer` (`name`, `role`) VALUES ('Lena', 'ADMIN');
+INSERT INTO `proposal`.`customer` (`name`, `role`) VALUES ('Sveta', 'CUSTOMER');
+INSERT INTO `proposal`.`customer` (`name`, `role`) VALUES ('Nika', 'CUSTOMER');
+INSERT INTO `proposal`.`customer` (`name`, `role`) VALUES ('Organisation', 'ADMIN');
+
+INSERT INTO `proposal`.`proposal` (`request`, `dib`, `status`, `due_date`, `start_date`, `denied_date`, `done_date`, `customer_id`) VALUES ('order2', 12.5, DEFAULT, '2018-10-21 08:33', '2018-06-21 08:34:54', DEFAULT, DEFAULT, 6);
+INSERT INTO `proposal`.`proposal` (`request`, `dib`, `status`, `due_date`, `start_date`, `denied_date`, `done_date`, `customer_id`) VALUES ('order3', 6, DEFAULT, '2018-12-21 08:33', '2018-06-21 08:34:56', DEFAULT, DEFAULT, 4);
+INSERT INTO `proposal`.`proposal` (`request`, `dib`, `status`, `due_date`, `start_date`, `denied_date`, `done_date`, `customer_id`) VALUES ('order4', 8, DEFAULT, '2018-11-21 08:33', '2018-06-21 08:34:57', DEFAULT, DEFAULT, 7);
+INSERT INTO `proposal`.`proposal` (`request`, `dib`, `status`, `due_date`, `start_date`, `denied_date`, `done_date`, `customer_id`) VALUES ('order5', 14, DEFAULT, '2018-09-21 08:34', '2018-06-21 08:34:59', DEFAULT, DEFAULT, 3);
+INSERT INTO `proposal`.`proposal` (`request`, `dib`, `status`, `due_date`, `start_date`, `denied_date`, `done_date`, `customer_id`) VALUES ('order6', 22.3, DEFAULT, '2019-06-21 08:34', '2018-06-21 08:35:02', DEFAULT, DEFAULT, 5);
+INSERT INTO `proposal`.`proposal` (`request`, `dib`, `status`, `due_date`, `start_date`, `denied_date`, `done_date`, `customer_id`) VALUES ('order7', 14, DEFAULT, '2018-08-21 08:34', '2018-06-21 08:35:01', DEFAULT, DEFAULT, 3);
+INSERT INTO `proposal`.`proposal` (`request`, `dib`, `status`, `due_date`, `start_date`, `denied_date`, `done_date`, `customer_id`) VALUES ('order8', 102.8, DEFAULT, '2018-12-21 08:34', '2018-06-21 08:35:03', DEFAULT, DEFAULT, 5);
+INSERT INTO `proposal`.`proposal` (`request`, `dib`, `status`, `due_date`, `start_date`, `denied_date`, `done_date`, `customer_id`) VALUES ('order9', 55, DEFAULT, '2018-08-21 08:34', '2018-06-21 08:35:04', DEFAULT, DEFAULT, 2);
+INSERT INTO `proposal`.`proposal` (`request`, `dib`, `status`, `due_date`, `start_date`, `denied_date`, `done_date`, `customer_id`) VALUES ('order10', 3, DEFAULT, '2018-06-21 08:34', '2018-06-21 08:35:06', DEFAULT, DEFAULT, 3);
+INSERT INTO `proposal`.`proposal` (`request`, `dib`, `status`, `due_date`, `start_date`, `denied_date`, `done_date`, `customer_id`) VALUES ('order11', 4.05, DEFAULT, '2018-12-21 08:34', '2018-06-21 08:35:09', DEFAULT, DEFAULT, 2);
+INSERT INTO `proposal`.`proposal` (`request`, `dib`, `status`, `due_date`, `start_date`, `denied_date`, `done_date`, `customer_id`) VALUES ('order12', 12, DEFAULT, '2018-06-25 08:34', '2018-06-21 08:35:10', DEFAULT, DEFAULT, 4);
+INSERT INTO `proposal`.`proposal` (`request`, `dib`, `status`, `due_date`, `start_date`, `denied_date`, `done_date`, `customer_id`) VALUES ('Order13', 23.55, DEFAULT, '2018-11-25 15:22', '2018-06-25 15:22:54', DEFAULT, DEFAULT, 1)

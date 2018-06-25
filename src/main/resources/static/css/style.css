@@ -1,0 +1,41 @@
+
+table {
+    border: 2px solid darkgray;
+    border-collapse: collapse;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+th , td{
+    border: 1px solid darkgray;
+    padding: 4px 15px;
+}
+
+#mainDiv{
+    width: 70%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    color: dimgrey;
+    font: normal bold 20px Arial;
+}
+
+button{
+    width: 120px;
+    height: 30px;
+}
+
+select{
+    width: 120px;
+    height: 25px;
+}
+
+.labelInput{
+    width: 120px;
+    float: left;
+}
+
+input{
+    width: 200px;
+    height: 25px;
+}
