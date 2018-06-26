@@ -5,7 +5,7 @@ application.properties
 database name: proposal
 
 ####_SQL script_: 
-In the resource folder
+In the resources folder
 
 ####_First page_: 
-<http://localhost:8080/first-page> 
+<http://localhost:8090/first-page> 
