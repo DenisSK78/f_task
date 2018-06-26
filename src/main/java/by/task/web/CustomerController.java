@@ -67,9 +67,6 @@ public class CustomerController {
                 .setCustomerDTO(cDn)
                 .build();
         pService.save(pD);
-        CustomerDTO cD = cService.searchByIdWithProposal(cDn.getId());
-        model.addAttribute("cust", cD);
-        model.addAttribute("listC", cD.getProposalDTOList());
-        return "customer";
+        return "redirect:/customer/"+id;
     }
 }
