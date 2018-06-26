@@ -56,7 +56,7 @@ public class CustomerController {
     }
 
     @PostMapping(value = "customer")
-    public String addProposal(Model model, Long id, String request, Double dib, String time){
+    public String addProposal(Long id, String request, Double dib, String time){
         CustomerDTO cDn = cService.findById(id);
         ProposalDTO pD = ProposalDTO.builder()
                 .setRequest(request)

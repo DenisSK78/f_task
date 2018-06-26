@@ -35,13 +35,11 @@ public class ProposalController {
     }
 
     @PostMapping(value = "/proposals")
-    public String updateDTO(String status, Model model, Long id){
+    public String updateDTO(String status, Long id){
         ProposalDTO pr  = pService.findById(id);
         pr.setStatus(status);
         pr = AddNewStatus.newStatus(pr);
         pService.update(pr);
-        List<ProposalDTO> listP = pService.findAll();
-        model.addAttribute("listP", listP);
-        return "proposals";
+        return "redirect:/proposals";
     }
 }
