@@ -27,6 +27,5 @@ public class ConvertProposalList {
                     .collect(toList());
         }
         return Collections.emptyList();
-
     }
 }
