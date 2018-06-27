@@ -3,8 +3,11 @@ package by.task.web;
 import by.task.service.ProposalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Map;
 
 
 @Controller
@@ -19,14 +22,11 @@ public class StatisticsController {
 
     @GetMapping("/statistics")
     public String proposalC(Model model) {
-        Long pTotal = pService.count();
-        Long pDone = pService.countProposalsByStatusLike("DONE");
-        Long pDenied = pService.countProposalsByStatusLike("DENIED");
-        Long pNew = pService.countProposalsByStatusLike("NEW");
-        model.addAttribute("total", pTotal);
-        model.addAttribute("done", pDone);
-        model.addAttribute("denied", pDenied);
-        model.addAttribute("pNew", pNew);
+        Map<String, Long> st = pService.getStatistics();
+        model.addAttribute("total", st.get("total"));
+        model.addAttribute("done", st.get("done"));
+        model.addAttribute("denied", st.get("denied"));
+        model.addAttribute("pNew", st.get("total") - st.get("done") - st.get("denied"));
         return "statistics";
     }
 }

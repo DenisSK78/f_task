@@ -10,8 +10,11 @@ import by.task.service.util.ConvertStatus;
 import by.task.service.util.ProposalUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProposalServiceImpl implements ProposalService {
@@ -46,6 +49,16 @@ public class ProposalServiceImpl implements ProposalService {
     @Override
     public Long countProposalsByStatusLike(String s) {
         return proposalRepository.countProposalsByStatusLike(ConvertStatus.getEnumStatus(s));
+    }
+
+    @Override
+    @Transactional
+    public Map<String, Long> getStatistics() {
+        Map<String, Long> map = new HashMap<>();
+        map.put("total", proposalRepository.count());
+        map.put("denied", proposalRepository.countProposalsByStatusLike(ConvertStatus.getEnumStatus("DENIED")));
+        map.put("done", proposalRepository.countProposalsByStatusLike(ConvertStatus.getEnumStatus("DONE")));
+        return map;
     }
 
     @Override
