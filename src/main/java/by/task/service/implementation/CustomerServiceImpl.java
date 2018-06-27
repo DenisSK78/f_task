@@ -34,7 +34,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void update(CustomerDTO o) {}
+    public List<CustomerDTO> getAllCustomerOnly() {
+        return ConvertCustomerList.customerDTOList(customerRepository.roleLike(Role.CUSTOMER));
+    }
 
     @Override
     public CustomerDTO saveAndReturn(CustomerDTO o) {
@@ -44,25 +46,20 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerDTO> getAllCustomerOnly() {
-        return ConvertCustomerList.customerDTOList(customerRepository.roleLike(Role.CUSTOMER));
-    }
-
-    @Override
     public CustomerDTO searchByIdWithProposal(Long id) {
         Customer c = customerRepository.findByIdFetchEagerly(id);
-        if (c!=null) {
-            CustomerDTO cD = ConvertForCustomer.toCustomerDTO(c);
-            if (c.getProposals()!=null)
+        CustomerDTO cD = ConvertForCustomer.toCustomerDTO(c);
+        if (c.getProposals()!=null)
             cD.setProposalDTOList(ConvertProposalList.toProposalDTOList(c.getProposals()));
-            else cD.setProposalDTOList(Collections.emptyList());
-            return cD;
-        }
-        return null;
+        else cD.setProposalDTOList(Collections.emptyList());
+        return cD;
     }
 
     @Override
     public void save(CustomerDTO o) {}
+
+    @Override
+    public void update(CustomerDTO o) {}
 
     @Override
     public Long count() {

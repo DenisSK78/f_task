@@ -29,20 +29,13 @@ public class ProposalServiceImpl implements ProposalService {
     }
 
     @Override
-    public ProposalDTO findById(Long l) {
-        return ConvertForProposal.toProposalDTO(proposalRepository.findOne(l));
-    }
-
-    @Override
-    public void update(ProposalDTO o) {
-        Proposal p = proposalRepository.findOne(o.getId());
-        ProposalUpdate.updateProposal(p, o);
-        proposalRepository.save(p);
-    }
-
-    @Override
     public void save(ProposalDTO o){
         proposalRepository.save(ConvertForProposal.toProposal(o));
+    }
+
+    @Override
+    public ProposalDTO findById(Long l) {
+        return ConvertForProposal.toProposalDTO(proposalRepository.findOne(l));
     }
 
     @Override
@@ -53,5 +46,12 @@ public class ProposalServiceImpl implements ProposalService {
     @Override
     public Long countProposalsByStatusLike(String s) {
         return proposalRepository.countProposalsByStatusLike(ConvertStatus.getEnumStatus(s));
+    }
+
+    @Override
+    public void update(ProposalDTO o) {
+        Proposal p = proposalRepository.findOne(o.getId());
+        ProposalUpdate.updateProposal(p, o);
+        proposalRepository.save(p);
     }
 }

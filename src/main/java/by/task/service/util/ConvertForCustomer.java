@@ -14,8 +14,8 @@ public class ConvertForCustomer {
                 .build();
     }
 
-    public static by.task.service.dto.CustomerDTO toCustomerDTO(Customer customer){
-        return by.task.service.dto.CustomerDTO.newBuilder()
+    public static CustomerDTO toCustomerDTO(Customer customer){
+        return CustomerDTO.newBuilder()
                 .setId(customer.getId())
                 .setName(customer.getName())
                 .setRole(customer.getRole().toString())

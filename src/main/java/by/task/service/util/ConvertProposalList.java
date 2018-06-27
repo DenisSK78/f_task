@@ -4,27 +4,29 @@ import by.task.repository.entity.Proposal;
 import by.task.service.dto.ProposalDTO;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 public class ConvertProposalList {
 
     public static List<Proposal> toProposalList(List<ProposalDTO> proposalDTOList){
-        List<Proposal> proposalList = new ArrayList<>();
         if (proposalDTOList!=null) {
-            for (ProposalDTO p : proposalDTOList) {
-                proposalList.add(ConvertForProposal.toProposal(p));
-            }
+            return proposalDTOList.stream()
+                    .map(ConvertForProposal::toProposal)
+                    .collect(toList());
         }
-        return proposalList;
+        return Collections.emptyList();
     }
 
     public static List<ProposalDTO> toProposalDTOList(List<Proposal> proposalList) {
-        List<ProposalDTO> proposalDTOList = new ArrayList<>();
-        if (proposalList != null) {
-            for (Proposal p : proposalList) {
-                proposalDTOList.add(ConvertForProposal.toProposalDTO(p));
-            }
+        if (proposalList!=null) {
+            return proposalList.stream()
+                    .map(ConvertForProposal::toProposalDTO)
+                    .collect(toList());
         }
-        return proposalDTOList;
+        return Collections.emptyList();
+
     }
 }
